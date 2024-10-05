@@ -21,7 +21,7 @@
     <header class="p-4">
       <nav class="navbar navbar-expand-lg container fixed-top">
         <div class="container-fluid" id="Navbar">
-          <a class="navbar-brand" href="#Profile">Profile</a>
+          <a class="navbar-brand" href="#Profile">profile</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -51,6 +51,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#Portfolio">Portfolio</a>
+                </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Editing">Editing</a>
               </li>
             </ul>
           </div>
@@ -59,13 +62,14 @@
     </header>
     <!-- Navbar End -->
 
- <!-- Profile -->
-<section id="Profile" class="container mt-5">
+<!-- Profile -->
+ <section id="Profile" class="section-box container mt-4">
       <div>
         <div class="section-title p-4">
-<h1 style="text-align: center; margin-top: 20px; font-weight: bold; font-family: 'Great Vibes', cursive; color: red;">Sahil..</h1>
-          <hr />
+            <h1 style="text-align: center; margin: 0; font-weight: bold; font-family: 'Great Vibes', cursive; color: red;">Sahil</h1>
         </div>
+        <hr style="margin-top: -23px;"> <!-- Negative margin to pull the line closer -->
+    </div>
 
 
 <!----- today visitor ---->
@@ -74,53 +78,43 @@
   
   <div class="visitor-counter">
     <button class="counter-button">
-        Today's Visitor: <span id="visitorCount"></span>
+        Current Visitor: <span id="visitorCount"></span>
     </button>
   </div>
   
   <script>
       function getRandomStartingCount() {
-          let count;
-          do {
-              count = Math.floor(Math.random() * (38 - 10 + 1)) + 10; // Starting count 10 se 38 ke beech
-          } while (count === 195); // 195 nahi hona chahiye
-          return count;
+          return Math.floor(Math.random() * (50 - 10 + 1)) + 10; // Starting count 10 se 50 ke beech
       }
 
       function getRandomIncrement() {
-          return Math.floor(Math.random() * (32 - 1 + 1)) + 1; // Increment 1 se 32 ke beech
+          return Math.floor(Math.random() * (10 - 1 + 1)) + 1; // Increment 1 se 10 ke beech
       }
 
       function displayVisitorCount() {
           const now = new Date();
           const currentTime = now.getTime(); // Current time in milliseconds
-          const currentHour = now.getHours();
-          const resetHour = 0; // Raat 12
           const today = now.toISOString().split('T')[0];
           
           const lastReset = localStorage.getItem('lastReset');
-          const lastUpdatedTime = parseInt(localStorage.getItem('lastUpdatedTime')) || currentTime;
-
+          
           // Midnight par reset logic
           if (!lastReset || lastReset !== today) {
               const startingCount = getRandomStartingCount();
               localStorage.setItem('visitorCount', startingCount);
               localStorage.setItem('lastReset', today);
-              localStorage.setItem('lastUpdatedHour', resetHour);
-              localStorage.setItem('lastUpdatedTime', currentTime);
               console.log("Visitor count reset to:", startingCount);
           }
 
           let visitorCount = parseInt(localStorage.getItem('visitorCount')) || 20;
 
-          // Update count every 30 minutes
-          const thirtyMinutes = 30 * 60 * 1000; // 30 minutes in milliseconds
-          if (currentTime - lastUpdatedTime >= thirtyMinutes) {
+          // Update count every 15 minutes
+          const fifteenMinutes = 15 * 60 * 1000; // 15 minutes in milliseconds
+          const lastUpdatedTime = parseInt(localStorage.getItem('lastUpdatedTime')) || currentTime;
+
+          if (currentTime - lastUpdatedTime >= fifteenMinutes) {
               const increment = getRandomIncrement();
               visitorCount += increment;
-              if (visitorCount > 38) { // 38 se zyada nahi
-                  visitorCount = 38;
-              }
               localStorage.setItem('visitorCount', visitorCount);
               localStorage.setItem('lastUpdatedTime', currentTime);
           }
@@ -129,10 +123,46 @@
       }
 
       window.onload = displayVisitorCount;
-      setInterval(displayVisitorCount, 30000); // Update every 30 seconds for display
+      setInterval(displayVisitorCount, 30000); // Display update every 30 seconds
   </script>
 
 <!----- today visitor end---->
+<!------total visitor start-->
+<div class="total-visitor-counter">
+    <button class="total-visitor-button">
+        Total Visitors: <span id="totalVisitorCount"></span>
+    </button>
+</div>
+
+<script>
+    function getCurrentDate() {
+        return new Date().toISOString().split('T')[0];
+    }
+
+    function getRandomVisitors() {
+        return Math.floor(Math.random() * (280 - 250 + 1)) + 250; // Random number between 250 and 280
+    }
+
+    function displayTotalVisitorCount() {
+        const today = getCurrentDate();
+        const lastReset = localStorage.getItem('totalLastReset');
+        let totalVisitors = parseInt(localStorage.getItem('totalVisitorCount')) || 0;
+
+        // Check if it's a new day to update total visitors
+        if (!lastReset || lastReset !== today) {
+            const newVisitors = getRandomVisitors();
+            totalVisitors += newVisitors;
+            localStorage.setItem('totalVisitorCount', totalVisitors);
+            localStorage.setItem('totalLastReset', today);
+        }
+
+        document.getElementById('totalVisitorCount').innerText = totalVisitors;
+    }
+
+    // Call the function immediately
+    displayTotalVisitorCount();
+</script>
+<!------total visitor end---->
 
 
         <div class="row">
@@ -145,6 +175,7 @@
         object-fit: cover;
     "
             />
+            <hr>
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
             <h3>Full Stack Web Developer</h3>
@@ -569,9 +600,7 @@ E-mail Templates </p>
                 <span>Born</span>
                 <p>I born in April in Kolkata.</p>
               </div>
-            </div>
-
-            <div class="timeline-block timeline-block-left">
+                  <div class="timeline-block timeline-block-left">
               <div class="marker"></div>
               <div class="timeline-content">
                 <h3>10 years</h3>
@@ -640,7 +669,7 @@ Ethical hacking, penetration testing, vulnerability assessment Building: Website
        <!--Image or button START -->
   
   
-<section id="About" class="section-box container mt-4">
+<section id="Editing" class="section-box container mt-4">
     <div>
         <div class="section-title p-4">
             <h1>Editing</h1>
@@ -651,13 +680,13 @@ Ethical hacking, penetration testing, vulnerability assessment Building: Website
             <div class="gallery">
                 <div class="image-row">
                     <div class="image-item">
-                        <img src="https://www.dropbox.com/scl/fi/9rnegv8yoo600y5p94ilt/69eebb03b71a1e64389208a1a8b8b877.jpg?rlkey=iwer1yg0mwgoiv90fjjnwsuns&st=czxhqg4g&dl=1" alt="Image 1" onclick="openModal(this.src)">
+                        <img src="2.jpg" alt="Image 1" onclick="openModal(this.src)">
                         <button class="button-29" role="button" onclick="downloadImage('e.jpg')">
                             <i class="fas fa-download"></i> Download
                         </button>
                     </div>
                     <div class="image-item">
-                        <img src="https://www.dropbox.com/scl/fi/9rnegv8yoo600y5p94ilt/69eebb03b71a1e64389208a1a8b8b877.jpg?rlkey=iwer1yg0mwgoiv90fjjnwsuns&st=czxhqg4g&dl=1" alt="Image 2" onclick="openModal(this.src)">
+                        <img src="1.jpg" alt="Image 2" onclick="openModal(this.src)">
                         <button class="button-29" role="button" onclick="downloadImage('q.jpg')">
                             <i class="fas fa-download"></i> Download
                         </button>
@@ -665,13 +694,13 @@ Ethical hacking, penetration testing, vulnerability assessment Building: Website
                 </div>
                 <div class="image-row">
                     <div class="image-item">
-                        <img src="https://www.dropbox.com/scl/fi/9rnegv8yoo600y5p94ilt/69eebb03b71a1e64389208a1a8b8b877.jpg?rlkey=iwer1yg0mwgoiv90fjjnwsuns&st=czxhqg4g&dl=1" alt="Image 3" onclick="openModal(this.src)">
+                        <img src="q.jpg" alt="Image 3" onclick="openModal(this.src)">
                         <button class="button-29" role="button" onclick="downloadImage('q.jpg')">
                             <i class="fas fa-download"></i> Download
                         </button>
                     </div>
                     <div class="image-item">
-                        <img src="https://www.dropbox.com/scl/fi/9rnegv8yoo600y5p94ilt/69eebb03b71a1e64389208a1a8b8b877.jpg?rlkey=iwer1yg0mwgoiv90fjjnwsuns&st=czxhqg4g&dl=1" alt="Image 4" onclick="openModal(this.src)">
+                        <img src="q.jpg" alt="Image 4" onclick="openModal(this.src)">
                         <button class="button-29" role="button" onclick="downloadImage('q.jpg')">
                             <i class="fas fa-download"></i> Download
                         </button>
@@ -682,13 +711,13 @@ Ethical hacking, penetration testing, vulnerability assessment Building: Website
             
             <div class="image-row">
     <div class="image-item">
-        <img src="https://www.dropbox.com/scl/fi/9rnegv8yoo600y5p94ilt/69eebb03b71a1e64389208a1a8b8b877.jpg?rlkey=iwer1yg0mwgoiv90fjjnwsuns&st=czxhqg4g&dl=1" alt="Image 5" onclick="openModal(this.src)">
+        <img src="e.jpg" alt="Image 5" onclick="openModal(this.src)">
         <button class="button-29" role="button" onclick="downloadImage('e.jpg')">
             <i class="fas fa-download"></i> Download
         </button>
     </div>
     <div class="image-item">
-        <img src="https://www.dropbox.com/scl/fi/9rnegv8yoo600y5p94ilt/69eebb03b71a1e64389208a1a8b8b877.jpg?rlkey=iwer1yg0mwgoiv90fjjnwsuns&st=czxhqg4g&dl=1" alt="Image 6" onclick="openModal(this.src)">
+        <img src="q.jpg" alt="Image 6" onclick="openModal(this.src)">
         <button class="button-29" role="button" onclick="downloadImage('new_image_6.jpg')">
             <i class="fas fa-download"></i> Download
         </button>
@@ -888,11 +917,24 @@ Ethical hacking, penetration testing, vulnerability assessment Building: Website
         link.click();
         document.body.removeChild(link);
     }
-</script>
+</script> 
+
    
    <!--Image or button END -->
    
-   
+       <!-- About Section -->
+    <section id="About" class="section-box container mt-4">
+      <div>
+        <div class="section-title p-4">
+          <h1>About</h1>
+          <hr />
+          <p class="p-3">
+            .. sahila hai na ki wo 
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- About SEction End -->
    
     <!--Btn To Top-->
     <section>
@@ -932,6 +974,7 @@ Ethical hacking, penetration testing, vulnerability assessment Building: Website
       </script>
     </section>
     <!--Btn to Top End-->
+
 
     <!-- Footer-->
     <footer id="footer" class="container">
