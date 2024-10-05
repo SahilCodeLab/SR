@@ -714,11 +714,11 @@ body {
 
 
 
-.visitor-counter { 
+.visitor-counter {
 
     position: absolute;
 
-    top: 97px;
+    top: 72px;
 
     left: 1px;
 
@@ -728,27 +728,27 @@ body {
 
 .counter-button {
 
-    background-color: #53B4BF;
+    background-color: #2C3E50; /* Darker shade to match the background */
 
-    color: #333333;
+    color: #ECF0F1; /* Light text color for better contrast */
 
-    padding: 10px;
+    padding: 6px 10px; /* Reduced padding for a smaller shape */
 
-    font-size: 10px;
+    font-size: 12px; /* Adjusted font size */
 
-    font-weight: 700; /* Makes the font bold */
+    font-weight: 600; /* Slightly bold for clarity */
 
     border: none;
 
-    border-radius: 0; /* Square shape */
+    border-radius: 5px; /* Rounded corners */
 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 
     cursor: pointer;
 
     transition: all 0.3s ease;
 
-    font-family: 'Poppins', sans-serif; /* Example of a bold font family */
+    font-family: 'Poppins', sans-serif; /* Consistent font family */
 
 }
 
@@ -756,14 +756,88 @@ body {
 
 .counter-button:hover {
 
-    background-color: #223321;
+    background-color: #223321; /* Matching hover color */
 
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Slightly deeper shadow on hover */
 
 }
 
 
 
+.counter-button:focus {
+
+    outline: none; /* Remove default outline */
+
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6); /* Custom focus effect */
+
+}
+
 
 
 /*   visitor counter.End.*/
+
+
+
+/* Total Visitors Counter */
+
+
+
+/* Total Visitors Counter */
+
+.total-visitor-counter {
+
+    position: absolute;
+
+    top: 72px; /* Same position as Today Visitor */
+
+    left: 224px; /* Same position as Today Visitor */
+
+}
+
+
+
+.total-visitor-button {
+
+    background-color: #2C3E50; /* Darker shade */
+
+    color: #ECF0F1; /* Light text color for contrast */
+
+    padding: 6px 10px; /* Padding for a smaller shape */
+
+    font-size: 12px; /* Font size */
+
+    font-weight: 600; /* Slightly bold for clarity */
+
+    border: none;
+
+    border-radius: 5px; /* Rounded corners */
+
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+
+    cursor: pointer;
+
+    transition: all 0.3s ease; /* Smooth transition */
+
+    font-family: 'Poppins', sans-serif; /* Font family */
+
+}
+
+
+
+.total-visitor-button:hover {
+
+    background-color: #223321; /* Matching hover color */
+
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+
+}
+
+
+
+.total-visitor-button:focus {
+
+    outline: none; /* Remove default outline */
+
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6); /* Custom focus effect */
+
+}
