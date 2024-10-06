@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #828A90;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #00FBF0;
+        }
+
+        .gallery-section {
+            display: block;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image-container img {
+            width: 150px;
+            height: auto;
+            margin: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+
+        .close, .download {
+            position: relative;
+            top: -40px;
+            margin: auto;
+            display: block;
+            background: #4CAF50;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .download {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; font-family: 'Pacifico', cursive; font-size: 48px; color: green; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);">
+    Sahil-Gallery
+</h1>
+<p style="text-align: center; font-family: 'Arial', sans-serif; font-size: 24px; color: #333; font-weight: bold;">
+    Welcome To Our Website
+</p>
+    <div class="button-container">
+        <button onclick="showSection('nature')">Nature</button>
+        <button onclick="showSection('birds')">Birds</button>
+        <button onclick="showSection('animals')">Animals</button>
+        <button onclick="showSection('photography')">Photography</button>
+        <button onclick="showSection('model')">Model</button>
+        <button onclick="showSection('flower')">Flower</button>
+    </div>
+
+    <div id="gallery" class="gallery-section">
+        <!-- Nature Section -->
+        <div id="nature" class="hidden">
+            <h2>Nature</h2>
+            <div class="image-container">
+                <img src="https://www.dropbox.com/scl/fi/l3m3xz7yaiytey2ruwi2h/39e469049a15cdeda78c21aa537520e1.jpg?rlkey=aig0ors4cmlhw2mdelofb6o5y&st=wxvvdz0a&dl=1" alt="Nature 1" onclick="openModal(this)">
+                <img src="https://www.dropbox.com/scl/fi/zwqhzn7lb8vjkpu3xf4sq/657994861ea9f469fe5b5207276a780d.jpg?rlkey=9grx2kgyemszw8z5kftobyz0u&st=jc9w3d6z&dl=1" alt="Nature 2" onclick="openModal(this)">
+                <img src="https://via.placeholder.com/150?text=Nature+3" alt="Nature 3" onclick="openModal(this)">
+                <img src="https://www.dropbox.com/scl/fi/yllr01ydhnk4gzpies9jr/thumbnail.jpg?rlkey=3clx8ae66t4rv8os950n6k6k7&st=sa4xz66b&dl=0" alt="Nature 4" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ 
+            </div>
+        </div>
+
+        <!-- Birds Section -->
+        <div id="birds" class="hidden">
+            <h2>Birds</h2>
+            <div class="image-container">
+                <img src="https://www.dropbox.com/scl/fi/itebhs41i22tcqlbnkb7z/b56af5484b5e952ab54e37176d7205ff.jpg?rlkey=6lboelk52qauioqhv36pg95c6&st=9tqunv0h&dl=1" alt="Bird 1" onclick="openModal(this)">
+                <img src="https://via.placeholder.com/150?text=Bird+2" alt="Bird 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+            </div>
+        </div>
+
+        <!-- Animals Section -->
+        <div id="animals" class="hidden">
+            <h2>Animals</h2>
+            <div class="image-container">
+                <img src="https://via.placeholder.com/150?text=Animal+1" alt="Animal 1" onclick="openModal(this)">
+                <img src="https://via.placeholder.com/150?text=Animal+2" alt="Animal 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+            </div>
+        </div>
+
+        <!-- Photography Section -->
+        <div id="photography" class="hidden">
+            <h2>Photography</h2>
+            <div class="image-container">
+                <img src="https://via.placeholder.com/150?text=Photo+1" alt="Photo 1" onclick="openModal(this)">
+                <img src="https://via.placeholder.com/150?text=Photo+2" alt="Photo 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+            </div>
+        </div>
+
+        <!-- Model Section -->
+        <div id="model" class="hidden">
+            <h2>Model</h2>
+            <div class="image-container">
+                <img src="https://via.placeholder.com/150?text=Model+1" alt="Model 1" onclick="openModal(this)">
+                <img src="https://via.placeholder.com/150?text=Model+2" alt="Model 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+            </div>
+        </div>
+
+        <!-- Flower Section -->
+        <div id="flower" class="hidden">
+            <h2>Flower</h2>
+            <div class="image-container">
+                <img src="https://via.placeholder.com/150?text=Flower+1" alt="Flower 1" onclick="openModal(this)">
+                <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+                 <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)"
+ <img src="https://via.placeholder.com/150?text=Flower+2" alt="Flower 2" onclick="openModal(this)">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="download" id="downloadBtn" onclick="downloadImage()">Download</span>
+            <img id="modalImage" src="" alt="Modal Image">
+            <span class="close" onclick="closeModal()">×</span>
+        </div>
+    </div>
+
+    <script>
+        function showSection(section) {
+            const sections = document.querySelectorAll('.gallery-section > div');
+            sections.forEach(sec => {
+                sec.classList.add('hidden');
+            });
+            document.getElementById(section).classList.remove('hidden');
+        }
+
+        // Initially show the Nature section
+        showSection('nature');
+
+        function openModal(img) {
+            const modal = document.getElementById('myModal');
+            const modalImg = document.getElementById('modalImage');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            modal.style.display = 'flex';
+            modalImg.src = img.src;
+            downloadBtn.setAttribute('data-img', img.src);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+
+        function downloadImage() {
+            const imgSrc = document.getElementById('downloadBtn').getAttribute('data-img');
+            const link = document.createElement('a');
+            link.href = imgSrc;
+            link.download = imgSrc.split('/').pop(); // Set the downloaded file name
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+  </html>
