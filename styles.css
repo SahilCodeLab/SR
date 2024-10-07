@@ -420,3 +420,11 @@ body {
     outline: none; /* Remove default outline */
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6); /* Custom focus effect */
 }
+
+/* text copy protaction*/
+
+body {
+
+    user-select: none;
+
+}
