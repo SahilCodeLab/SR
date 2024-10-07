@@ -49,3 +49,11 @@ function draw()
 }
 
 setInterval(draw, 35);
+
+// text copy protaction 
+
+document.addEventListener('contextmenu', function(e) {
+
+    e.preventDefault();
+
+});
