@@ -72,6 +72,130 @@
     </div>
 
 
+<label class="switch-button" for="switch">
+  <div class="switch-outer">
+    <input id="switch" type="checkbox">
+    <div class="button">
+      <span class="button-toggle"></span>
+      <span class="button-indicator"></span>
+    </div>
+  </div>
+</label>
+
+<style>
+/* CSS for the switch */
+.switch-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -240px;
+  margin-top: -13px;
+  height: 55px;
+}
+
+.switch-button .switch-outer {
+  height: 100%;
+  background: #252532;
+  width: 115px;
+  border-radius: 165px;
+  box-shadow: inset 0px 5px 10px 0px #16151c, 0px 3px 6px -2px #403f4e;
+  border: 1px solid #32303e;
+  padding: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.switch-button .switch-outer input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.switch-button .switch-outer .button-toggle {
+  height: 42px;
+  width: 42px;
+  background: linear-gradient(#3b3a4e, #272733);
+  border-radius: 100%;
+  box-shadow: inset 0px 5px 4px 0px #424151, 0px 4px 15px 0px #0f0e17;
+  position: relative;
+  transition: left 0.3s ease-in;
+  left: 0;
+}
+
+.switch-button .switch-outer input[type="checkbox"]:checked + .button .button-toggle {
+  left: 58%;
+}
+
+.switch-button .switch-outer input[type="checkbox"]:checked + .button .button-indicator {
+  animation: indicator 1s forwards;
+}
+
+.switch-button .switch-outer .button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.switch-button .switch-outer .button-indicator {
+  height: 25px;
+  width: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 3px solid #ef565f;
+  box-sizing: border-box;
+  right: 10px;
+  position: relative;
+}
+
+@keyframes indicator {
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    border: 3px solid #60d480;
+    left: -68%;
+  }
+}
+</style>
+
+<script>
+// MP3 file path
+const mp3FilePath = 'https://www.dropbox.com/scl/fi/rphytez2t0aflxryo9lvu/ReelAudio-23228.mp3?rlkey=kdkyfnpvljtfjl5t2150ck3bs&st=cpq4iq7c&dl=1';
+let audio = new Audio(mp3FilePath);
+
+// Preload the audio to avoid delay
+audio.preload = 'auto'; // Preloading the audio so it's ready to play
+
+// Ensure audio is fully loaded and ready before allowing interaction
+audio.addEventListener('canplaythrough', function() {
+  console.log("Audio is ready to play.");
+});
+
+// Add event listener to the switch button for play/pause functionality
+document.getElementById('switch').addEventListener('change', function() {
+  if (this.checked) {
+    audio.currentTime = 0;  // Ensure the audio starts from the beginning
+    audio.play().catch(function(error) {
+      console.log("Play prevented:", error);
+    });
+  } else {
+    audio.pause();
+  }
+});
+
+// Start loading the audio file as soon as the window loads
+window.addEventListener('load', function() {
+  audio.load(); // Start loading the audio file immediately
+});
+</script>
+   
+
+   
 <!----- today visitor ---->
 
 <body>
