@@ -48,12 +48,15 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#Skill">Skill</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#Portfolio">Portfolio</a>
-                </li>
+             
               <li class="nav-item">
                 <a class="nav-link" href="#Editing">Editing</a>
+                <li class="nav-item">
+                <a class="nav-link" href="#website">Website</a>
+                 </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Feedback">Feedback</a>
+              </li>
               </li>
             </ul>
           </div>
@@ -62,19 +65,78 @@
     </header>
     <!-- Navbar End -->
 
-<!-- Profile -->
- <section id="Profile" class="section-box container mt-4">
-      <div>
+<div class="header">
+    <div class="profile-container">
+        <img src="ae.jpg" alt="Profile Picture" class="profile-pic">
+    </div>
+    <div class="banner-container">
+        <img src="ar.jpg" alt="Banner" class="banner">
+    </div>
+</div>
+
+<style>
+    * {
+        margin: 0; /* Reset margin for all elements */
+        padding: 0; /* Reset padding for all elements */
+    }
+
+    .header {
+        display: flex;
+        align-items: center; /* Center items vertically */
+        background-color: white;
+        width: 100%; /* Full width */
+        margin-top: 60px;
+    }
+
+    .profile-container {
+        margin-right: 1px; /* Space between profile pic and banner */
+    }
+
+    .profile-pic {
+        width: 70px; /* Fixed size */
+        height: 70px; /* Fixed height */
+        border-radius: 0; /* Make it square */
+    }
+
+    .banner-container {
+        height: 70px; /* Fixed height for banner */
+        width: 320px; /* Fixed width for banner */
+        overflow: hidden; /* Prevent overflow */
+    }
+
+    .banner {
+        width: 100%; /* Fill the width */
+        height: 100%; /* Fill the height */
+        object-fit: cover; /* Maintain aspect ratio without gaps */
+        display: block; /* Remove bottom gap */
+    }
+</style>
+
+
+<section id="Profile" class="section-box container mt-4">
+    <div>
         <div class="section-title p-4">
-            <h1 style="text-align: center; margin: 0; font-weight: bold; font-family: 'Great Vibes', cursive; color: red;">Sahil</h1>
+            <h1 style="text-align: center; margin: -45px 0 0 0; font-weight: bold; font-family: 'Great Vibes', cursive; color: #FF1629;">Sahil</h1>
         </div>
         <hr style="margin-top: -23px;"> <!-- Negative margin to pull the line closer -->
     </div>
+<!-- MUSIC TOGGLE BUTTON CODE START--->
 
-
-<label class="switch-button" for="switch">
+<!-- First Switch -->
+<label class="switch-button switch1" for="switch1">
   <div class="switch-outer">
-    <input id="switch" type="checkbox">
+    <input id="switch1" type="checkbox">
+    <div class="button">
+      <span class="button-toggle"></span>
+      <span class="button-indicator"></span>
+    </div>
+  </div>
+</label>
+
+<!-- Second Switch -->
+<label class="switch-button switch2" for="switch2">
+  <div class="switch-outer">
+    <input id="switch2" type="checkbox">
     <div class="button">
       <span class="button-toggle"></span>
       <span class="button-indicator"></span>
@@ -88,15 +150,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: -240px;
-  margin-top: -13px;
   height: 55px;
+}
+
+.switch1 {
+  margin-left: 220px; /* Specific margin for the first switch */
+  margin-top: -13px;  /* Specific margin for the first switch */
+}
+
+.switch2 {
+  margin-right: 220px; /* Specific margin for the second switch */
+  margin-top: -55px;  /* Specific margin for the second switch */
 }
 
 .switch-button .switch-outer {
   height: 100%;
   background: #252532;
-  width: 115px;
+  width: 120px; /* Increase width here */
+  min-width: 120px; /* Ensure minimum width */
   border-radius: 165px;
   box-shadow: inset 0px 5px 10px 0px #16151c, 0px 3px 6px -2px #403f4e;
   border: 1px solid #32303e;
@@ -122,7 +193,7 @@
 }
 
 .switch-button .switch-outer input[type="checkbox"]:checked + .button .button-toggle {
-  left: 58%;
+  left: 60%;
 }
 
 .switch-button .switch-outer input[type="checkbox"]:checked + .button .button-indicator {
@@ -164,39 +235,71 @@
 </style>
 
 <script>
-// MP3 file path
-const mp3FilePath = 'https://www.dropbox.com/scl/fi/rphytez2t0aflxryo9lvu/ReelAudio-23228.mp3?rlkey=kdkyfnpvljtfjl5t2150ck3bs&st=cpq4iq7c&dl=1';
-let audio = new Audio(mp3FilePath);
+// Audio files
+const audio1 = new Audio('https://www.dropbox.com/scl/fi/gtfeqcpnb1p7dulvcfve5/ReelAudio-7622.mp3?rlkey=hsbq4pg9qkq19hjkohzxg2ybb&st=dza2xavy&dl=1');
+const audio2 = new Audio('https://www.dropbox.com/scl/fi/rphytez2t0aflxryo9lvu/ReelAudio-23228.mp3?rlkey=kdkyfnpvljtfjl5t2150ck3bs&st=5i7w52gh&dl=1');
 
-// Preload the audio to avoid delay
-audio.preload = 'auto'; // Preloading the audio so it's ready to play
+// Preload both audio files
+audio1.preload = 'auto';
+audio2.preload = 'auto';
 
-// Ensure audio is fully loaded and ready before allowing interaction
-audio.addEventListener('canplaythrough', function() {
-  console.log("Audio is ready to play.");
-});
+// Get the switches
+const switch1 = document.getElementById('switch1');
+const switch2 = document.getElementById('switch2');
 
-// Add event listener to the switch button for play/pause functionality
-document.getElementById('switch').addEventListener('change', function() {
+// Function to reset a specific switch
+function resetSwitch(switchElement) {
+  switchElement.checked = false;
+}
+
+// Add event listener to the first switch
+switch1.addEventListener('change', function() {
   if (this.checked) {
-    audio.currentTime = 0;  // Ensure the audio starts from the beginning
-    audio.play().catch(function(error) {
-      console.log("Play prevented:", error);
-    });
+    // Play first audio and stop second
+    audio1.currentTime = 0;
+    audio1.play();
+    audio2.pause();
+    audio2.currentTime = 0;
+    resetSwitch(switch2);  // Reset second switch
   } else {
-    audio.pause();
+    audio1.pause();
   }
 });
 
-// Start loading the audio file as soon as the window loads
+// Add event listener to the second switch
+switch2.addEventListener('change', function() {
+  if (this.checked) {
+    // Play second audio and stop first
+    audio2.currentTime = 0;
+    audio2.play();
+    audio1.pause();
+    audio1.currentTime = 0;
+    resetSwitch(switch1);  // Reset first switch
+  } else {
+    audio2.pause();
+  }
+});
+
+// Add event listener to reset switches when audio ends
+audio1.addEventListener('ended', function() {
+  resetSwitch(switch1);
+});
+
+audio2.addEventListener('ended', function() {
+  resetSwitch(switch2);
+});
+
+// Load the audio files when the page loads
 window.addEventListener('load', function() {
-  audio.load(); // Start loading the audio file immediately
+  audio1.load();
+  audio2.load();
 });
 </script>
-   
 
-   
-<!----- today visitor ---->
+<!-----MUSIC TOGGLE BUTTON END--->
+
+
+<!----- today visitor START ---->
 
 <body>
   
@@ -208,11 +311,11 @@ window.addEventListener('load', function() {
   
   <script>
       function getRandomStartingCount() {
-          return Math.floor(Math.random() * (50 - 10 + 1)) + 10; // Starting count 10 se 50 ke beech
+          return Math.floor(Math.random() * (55 - 15 + 1)) + 15; // Starting count 15 se 55 ke beech
       }
 
       function getRandomIncrement() {
-          return Math.floor(Math.random() * (10 - 1 + 1)) + 1; // Increment 1 se 10 ke beech
+          return Math.floor(Math.random() * (25 - 10 + 1)) + 10; // Increment 10 se 25 ke beech
       }
 
       function displayVisitorCount() {
@@ -227,6 +330,7 @@ window.addEventListener('load', function() {
               const startingCount = getRandomStartingCount();
               localStorage.setItem('visitorCount', startingCount);
               localStorage.setItem('lastReset', today);
+              localStorage.setItem('lastUpdatedTime', currentTime); // Reset last updated time
               console.log("Visitor count reset to:", startingCount);
           }
 
@@ -243,10 +347,12 @@ window.addEventListener('load', function() {
               localStorage.setItem('lastUpdatedTime', currentTime);
           }
 
+          // Seedha visitor count dikhana
           document.getElementById('visitorCount').innerText = visitorCount;
       }
 
-      window.onload = displayVisitorCount;
+      // Page load hote hi visitor count dikhana
+      displayVisitorCount();
       setInterval(displayVisitorCount, 30000); // Display update every 30 seconds
   </script>
 
@@ -292,7 +398,7 @@ window.addEventListener('load', function() {
         <div class="row">
           <div class="col-lg-4">
             <img
-              src="profile.jpg" alt="Profile Image" style="
+              src="5.png" alt="Profile Image" style="
         width: 250px; 
         height: 250px; 
         border-radius: 50%; 
@@ -303,7 +409,7 @@ window.addEventListener('load', function() {
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
             <h3>Full Stack Web Developer</h3>
-            <p class="fst-italic">I Working On Web Since 2023</p>
+            <p class="fst-italic" style="font-size: 20px;">I Working On Web Since 2023</p>
             <div class="row">
               <div class="col-lg-6">
                 <ul>
@@ -706,90 +812,7 @@ E-mail Templates </p>
     </section>
     <!-- Skill SEction End -->
 
-    <!-- Project Section -->
-    <section id="Portfolio" class="section-box container mt-4">
-      <div>
-        <div class="section-title p-4">
-          <h1>Portfolio</h1>
-          <hr />
 
-          <h1 style="text-align: center; color: white">
-            My <span>TimeLine</span>
-          </h1>
-          <div class="Pcontainer">
-            <div class="timeline-block timeline-block-right">
-              <div class="marker"></div>
-              <div class="timeline-content">
-                <h3>Apr</h3>
-                <span>Born</span>
-                <p>I born in April in Kolkata.</p>
-              </div>
-            </div>
-
-            <div class="timeline-block timeline-block-left">
-              <div class="marker"></div>
-              <div class="timeline-content">
-                <h3>10 years</h3>
-                <span>Early Education</span>
-                <p>
-                  Class 1-5: Built foundational knowledge in Math, Science, and Language, focusing on essential literacy and numeracy skills.
-Class 6-8: Enhanced problem-solving, critical thinking, and teamwork through diverse academic and collaborative activities.
-Class 9-10: Focused on core subjects and extracurriculars to prepare for higher education, developing leadership and planning skills.
-<hr>
-<h2>motivation</h2>
-                  “Recognize yourself, understand yourself, and then watch how the world kisses your feet.”
-                </p>
-              </div>
-            </div>
-                </p>
-              </div>
-            </div>
-
-            <div class="timeline-block timeline-block-right">
-              <div class="marker"></div>
-              <div class="timeline-content">
-                <h3>Higher Secondary Education</h3>
-                <span>11th-12th</span>
-                <p>
-                  Class 11-12th Focused on core subjects and prepared for higher education
-- Developed strong foundation in chosen stream
-- Enhanced knowledge in core subjects like Accountancy,economics,business studies, E-commerce 
-- Developed skills in problem-solving, critical thinking, and communication
-- Prepared for competitive exams and entrance tests
-                </p>
-              </div>
-            </div>
-
-            <div class="timeline-block timeline-block-left">
-              <div class="marker"></div>
-              <div class="timeline-content">
-                <h3>Bachelor of Commerce</h3>
-                <span>College-Now</span>
-                <p>
-                  Gained advanced knowledge in Commerce subjects
- Developed skills in financial management,accounting,and business research Enhanced understanding of business principles and practices Prepared for career in Finance, Accounting, and Management
-                </p>
-              </div>
-            </div>
-
-            <div class="timeline-block timeline-block-right">
-              <div class="marker"></div>
-              <div class="timeline-content">
-                <h3>Technical Skills</h3>
-                <span>Full Stack Web Developer</span>
-                <p>
-                  Coding: HTML,CSS, JavaScript,python ,C++ and more
-<hr>
- <h1>Hacking</h1>
-Ethical hacking, penetration testing, vulnerability assessment Building: Websites, web applications, and small games Learning: New coding languages and hacking techniques
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Project SEction End -->
     
     
        <!--Image or button START -->
@@ -834,24 +857,9 @@ Ethical hacking, penetration testing, vulnerability assessment Building: Website
                 </div>
             </div>
             <br
-            
-            <div class="image-row">
-    <div class="image-item">
-        <img src="e.jpg" alt="Image 5" onclick="openModal(this.src)">
-        <button class="button-29" role="button" onclick="downloadImage('e.jpg')">
-            <i class="fas fa-download"></i> Download
-        </button>
-    </div>
-    <div class="image-item">
-        <img src="q.jpg" alt="Image 6" onclick="openModal(this.src)">
-        <button class="button-29" role="button" onclick="downloadImage('new_image_6.jpg')">
-            <i class="fas fa-download"></i> Download
-        </button>
-    </div>
-</div>
 
 <div class="button-container">
-    <button class="button-30" role="button" onclick="window.location.href='Main.html';">View All</button>
+    <button class="button-30" role="button" onclick="window.location.href='https://www.google.com';">View All</button>
 </div>
 
 <style>
@@ -1048,20 +1056,351 @@ Ethical hacking, penetration testing, vulnerability assessment Building: Website
    
    <!--Image or button END -->
    
-       <!-- About Section -->
-    <section id="About" class="section-box container mt-4">
-      <div>
-        <div class="section-title p-4">
-          <h1>About</h1>
-          <hr />
-          <p class="p-3">
-            .. sahila hai na ki wo 
-          </p>
+<!-- About Section -->
+<section id="website" class="section-box container mt-4" 
+  style="background-color: rgba(161, 180, 150, 0.55); /* Light color with transparency */ padding: 20px; border-radius: 5px; transition: background-color 0.3s;" 
+  onclick="changeColor(event)">
+
+  <div>
+    <div class="section-title text-center p-4">
+      <h1 style="color: white; font-size: 1.8em; font-family: 'Impact', sans-serif; font-weight: bold;">
+    Welcome to <span style="color: red;">Sahil</span>'s <span style="color:red;">Shopping </span> Center !
+</h1>
+</h1>
+      <hr style="border: 1px solid white; /* Dark green line */ width: 60%; margin: auto;" />
+      <p class="p-3" style="font-size: 1em; color: whitesmoke;">Explore amazing products and exclusive deals crafted just for you!</p>
+    </div>
+
+    <div class="about-content" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+      <!-- Initial Image -->
+      <div class="about-item" style="flex-basis: 100%; text-align: center; margin: 10px 0;">
+        <img src="https://www.dropbox.com/scl/fi/hshd495keknngwxdzsj9l/images-17-26.jpeg?rlkey=wf7b7l668gc766qhpv3ku9if3&st=3yy4eafv&dl=1" alt="Shopping Experience" class="click-zoom" style="border-radius: 5px; width: 100%; height: auto; cursor: pointer;" onclick="zoomImage(event, this.src)">
+      </div>
+
+      <!-- Product Items -->
+      <div class="about-item" style="flex-basis: 48%; text-align: center; margin: 10px 0;">
+        <img src="https://www.dropbox.com/scl/fi/bfclez5ncdio0j20c1evz/95ba3a159462815c4b14a5e9a9c1d28a.jpg?rlkey=jqypu1tjh670kralebzkoi583&st=0xci15nd&dl=1" alt="Wide Range of Products" style="border-radius: 5px; width: 100%; height: auto; cursor: pointer;" onclick="zoomImage(event, this.src)">
+        <p style="color: #ffffff; font-weight: bold; font-size: 0.9em;">
+          <a href="https://myshopprime.com/Sahil.store./06ogfvq" target="_blank" style="color: #ffffff; text-decoration: none;">Shop now</a>
+        </p>
+      </div>
+      <div class="about-item" style="flex-basis: 48%; text-align: center; margin: 10px 0;">
+        <img src="https://www.dropbox.com/scl/fi/w0moxtryn4x4jxmosd5dp/da2848f37bcb7d88015779439e8bc941.jpg?rlkey=49k8lggkw5j5etrzifa4u9ed8&st=srh7h1rr&dl=1" alt="Exclusive Deals" style="border-radius: 5px; width: 100%; height: auto; cursor: pointer;" onclick="zoomImage(event, this.src)">
+        <p style="color: #ffffff; font-weight: bold; font-size: 0.9em;">
+          <a href="https://myshopprime.com/Sahil.store./06ogfvq" target="_blank" style="color: #ffffff; text-decoration: none;">Exclusive Deals</a>
+        </p>
+      </div>
+      <div class="about-item" style="flex-basis: 48%; text-align: center; margin: 10px 0;">
+        <img src="https://www.dropbox.com/scl/fi/5cly7vxpd4iaqje4elu00/c36fb80545a270c90f22cfe8c1f71e99.jpg?rlkey=kb22nzrj04ryvovno00f32010&st=dre0z9ex&dl=1" alt="Fast Delivery" style="border-radius: 5px; width: 100%; height: auto; cursor: pointer;" onclick="zoomImage(event, this.src)">
+        <p style="color: #ffffff; font-weight: bold; font-size: 0.9em;">
+          <a href="https://myshopprime.com/Sahil.store./06ogfvq" target="_blank" style="color: #ffffff; text-decoration: none;">Fast Delivery</a>
+        </p>
+      </div>
+      <div class="about-item" style="flex-basis: 48%; text-align: center; margin: 10px 0;">
+        <img src="https://www.dropbox.com/scl/fi/4xhr4r0gryle4skaz8up4/20241007_192016.jpg?rlkey=ocp5fbgb7kz25ljk1vop5yiko&st=r6cjz8w4&dl=1" alt="Customer Support" style="border-radius: 5px; width: 100%; height: auto; cursor: pointer;" onclick="zoomImage(event, this.src)">
+        <p style="color: #ffffff; font-weight: bold; font-size: 0.9em;">
+          <a href="https://myshopprime.com/Sahil.store./06ogfvq" target="_blank" style="color: #ffffff; text-decoration: none;">24/7 Customer Support</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="text-center mt-2">
+     <a href="#" class="btn"
+   style="background-color: #388e3c; color: white; padding: 10px 20px; border: none; border-radius: 5px; text-decoration: none; font-size: 16px; font-weight: bold; transition: background-color 0.3s, transform 0.3s; display: inline-block; position: relative; overflow: hidden; outline: none; box-shadow: none;" 
+   onclick="handleClick(event)">Shop Now</a>
+
+<style>
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    animation: pulse 1.5s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  /* Bobble effect */
+  @keyframes bobble {
+    0% { transform: translateY(0); background-color: #388e3c; }
+    50% { transform: translateY(-5px); background-color: #66bb6a; } /* Light green color */
+    100% { transform: translateY(0); background-color: #388e3c; }
+  }
+
+  /* Remove outline and shadow on focus */
+  .btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
+</style>
+
+<script>
+  function addCircles(button) {
+    for (let i = 0; i < 6; i++) {
+      const circle = document.createElement('div');
+      circle.classList.add('circle');
+      const size = Math.random() * 50 + 20; // Random size between 20px and 70px
+      const x = Math.random() * (button.clientWidth - size); // Random x position within button width
+      const y = Math.random() * (button.clientHeight - size); // Random y position within button height
+      circle.style.width = `${size}px`;
+      circle.style.height = `${size}px`;
+      circle.style.left = `${x}px`;
+      circle.style.top = `${y}px`;
+      button.appendChild(circle);
+      
+      // Remove the circle after animation
+      setTimeout(() => {
+        circle.remove();
+      }, 1500);
+    }
+  }
+
+  function handleClick(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    const button = event.currentTarget; // Get the button that was clicked
+    addCircles(button); // Add circles animation
+
+    // Start the bobble animation with color change
+    button.style.animation = 'bobble 0.6s'; // Apply bobble animation
+
+    // After 3 seconds, redirect to the link
+    setTimeout(() => {
+      window.location.href = 'https://myshopprime.com/Sahil.store./06ogfvq';
+    }, 3000); // 3000 milliseconds = 3 seconds
+  }
+</script>
+
+  </div>
+</section>
+
+<script>
+  function changeColor(event) {
+    event.stopPropagation();
+    const section = event.currentTarget;
+    section.style.backgroundColor = '#223322';
+
+    document.addEventListener('click', function resetColor(e) {
+      if (e.target !== section) {
+        section.style.backgroundColor = 'rgba(161, 180, 150, 0.55)';
+        document.removeEventListener('click', resetColor);
+      }
+    });
+  }
+
+  function zoomImage(event, src) {
+    event.stopPropagation();
+
+    // Create a full-screen overlay for zoomin
+const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.zIndex = 9999;
+
+    // Create the image element
+    const zoomedImg = document.createElement('img');
+    zoomedImg.src = src;
+    zoomedImg.style.maxWidth = '90%';
+    zoomedImg.style.maxHeight = '90%';
+    zoomedImg.style.borderRadius = '5px';
+
+    // Create a close button
+    const closeButton = document.createElement('button');
+    closeButton.innerText = 'Close';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '20px';
+    closeButton.style.right = '20px';
+    closeButton.style.padding = '10px';
+    closeButton.style.border = 'none';
+    closeButton.style.backgroundColor = 'red';
+    closeButton.style.color = 'white';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.borderRadius = '5px';
+    
+    // Append the image and close button to the overlay
+    overlay.appendChild(zoomedImg);
+    overlay.appendChild(closeButton);
+    document.body.appendChild(overlay);
+
+    // Close the overlay when clicking the close button
+    closeButton.onclick = function() {
+      document.body.removeChild(overlay);
+    };
+
+    // Close the overlay when clicking anywhere on the overlay (optional)
+    overlay.onclick = function() {
+      document.body.removeChild(overlay);
+    };
+  }
+</script>
+<!-- About Section End -->
+
+<!-- Feedback Section Start -->
+<section id="Feedback" class="section-box container mt-4">
+  <div>
+    <div class="section-title p-4">
+      <h1>Feedback</h1>
+      <hr />
+    </div>
+
+    <div class="testimonials">
+      <h2>Testimonials</h2>
+      <div class="testimonial-slider">
+        <div class="testimonial-item active">
+          <div class="testimonial-content">
+            <img src="1.jpg" alt="Client 1" class="testimonial-img" />
+            <p class="testimonial-feedback">"Kaam bahut shandar hai!"</p>
+            <p class="testimonial-name">- Rahul S.</p>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <div class="testimonial-content">
+            <img src="s.png" alt="Client 2" class="testimonial-img" />
+            <p class="testimonial-feedback">"You went above and beyond my expectations!
+
+"</p>
+            <p class="testimonial-name">- Priya K.</p>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <div class="testimonial-content">
+            <img src="e.jpg" alt="Client 3" class="testimonial-img" />
+            <p class="testimonial-feedback">"Bahut professional aur samajhdar!"</p>
+            <p class="testimonial-name">- Aman R.</p>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <div class="testimonial-content">
+            <img src="1.jpg" alt="Client 4" class="testimonial-img" />
+            <p class="testimonial-feedback">"Mujhe unki service pasand aayi!"</p>
+            <p class="testimonial-name">- Neha T.</p>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <div class="testimonial-content">
+            <img src="qq.jpg" alt="Client 5" class="testimonial-img" />
+            <p class="testimonial-feedback">"Har baar behtareen anubhav!"</p>
+            <p class="testimonial-name">- Raj P.</p>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <div class="testimonial-content">
+            <img src="profile.jpg" alt="Client 6" class="testimonial-img" />
+            <p class="testimonial-feedback">"Professionalism ka misaal!"</p>
+            <p class="testimonial-name">- Simran G.</p>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <div class="testimonial-content">
+            <img src="client7.jpg" alt="Client 7" class="testimonial-img" />
+            <p class="testimonial-feedback">"Bohot hi samajhdar aur quick service!"</p>
+            <p class="testimonial-name">- Vikram S.</p>
+          </div>
         </div>
       </div>
-    </section>
-    <!-- About SEction End -->
-   
+    </div>
+  </div>
+</section>
+<!-- Feedback Section End -->
+
+<style>
+  .section-box {
+      padding: 20px; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .testimonials {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+  }
+
+  .testimonial-slider {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto; 
+      overflow: hidden;
+  }
+
+  .testimonial-item {
+      display: none; 
+      text-align: center;
+      transition: opacity 0.5s ease, transform 0.5s ease; 
+      height: 320px; /* Increased height */
+      padding: 20px; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .testimonial-item.active {
+      display: block; 
+      opacity: 1; 
+      transform: translateY(0); 
+  }
+
+  .testimonial-item:not(.active) {
+      transform: translateY(-20px); /* Slide up effect */
+      opacity: 0; 
+  }
+
+  .testimonial-img {
+      width: 120px; 
+      height: 120px; 
+      border-radius: 50%; 
+      margin-bottom: 10px; 
+  }
+
+  .testimonial-name {
+      font-weight: bold;
+      margin: 5px 0 0; 
+      font-size: 16px; 
+  }
+
+  .testimonial-feedback {
+      font-size: 14px; 
+      margin: 10px 0; 
+      line-height: 1.5; 
+      height: auto; /* Allow height to adjust */
+  }
+</style>
+
+<script>
+  let slideIndex = 0;
+
+  function showSlides() {
+      const slides = document.getElementsByClassName("testimonial-item");
+      for (let i = 0; i < slides.length; i++) {
+          slides[i].classList.remove("active");
+      }
+      slideIndex++;
+      if (slideIndex >= slides.length) { slideIndex = 0; }
+      slides[slideIndex].classList.add("active");
+      setTimeout(showSlides, 3000); 
+  }
+
+  showSlides(); 
+</script>
+
+
+
+
     <!--Btn To Top-->
     <section>
       <div class="text-center mt-5">
